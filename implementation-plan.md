@@ -23,13 +23,13 @@ bigbio.ai currently shows a 2024 dark-neon placeholder. We're replacing it with 
 
 ### Tech stack
 
-| Layer | Tool |
-|-------|------|
-| Framework | Next.js 15 (static export) |
-| Content | @next/mdx + remark-gfm |
-| Styling | Tailwind v4 (latest) + @tailwindcss/typography |
-| Deploy | SamKirkland/FTP-Deploy-Action@v4.3.6 |
-| Hosting | InMotion shared/cPanel |
+| Layer     | Tool                                           |
+| --------- | ---------------------------------------------- |
+| Framework | Next.js 15 (static export)                     |
+| Content   | @next/mdx + remark-gfm                         |
+| Styling   | Tailwind v4 (latest) + @tailwindcss/typography |
+| Deploy    | SamKirkland/FTP-Deploy-Action@v4.3.6           |
+| Hosting   | InMotion shared/cPanel                         |
 
 ### Repo structure
 
@@ -82,7 +82,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: "npm" }
+        with: { node-version: 20, cache: 'npm' }
       - run: npm ci
       - run: npm run build
       - uses: SamKirkland/FTP-Deploy-Action@v4.3.6
@@ -90,7 +90,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ./public_html/  # InMotion default; verify in cPanel → File Manager. May be /public_html/bigbio.ai/ for addon domains.
+          server-dir: ./public_html/ # InMotion default; verify in cPanel → File Manager. May be /public_html/bigbio.ai/ for addon domains.
           local-dir: ./out/
 ```
 
@@ -129,6 +129,31 @@ Header set X-Frame-Options "SAMEORIGIN"
 - `~/code/yourfamilytools-next/.github/workflows/deploy.yml` — FTP deploy to copy
 - `~/code/yourfamilytools-next/next.config.ts` — Static export reference
 - [Next.js MDX Guide](https://nextjs.org/docs/app/guides/mdx)
+
+---
+
+## Next Session: Pick Up Here
+
+**Completed this session:**
+
+- CLAUDE.md created with project context, commands, architecture
+- `.markdownlint.jsonc` config in place
+- Implementation plan finalized
+
+**Next session — execute Phase 1a steps 1-12:**
+
+1. Scaffold Next.js 15 project (steps 1-7)
+2. Verify `npm run build` produces `out/` (step 8)
+3. Create GitHub repo `d33disc/bigbio-website` if not already remote (step 9)
+4. Add `.github/workflows/deploy.yml` + `public/.htaccess` (step 10)
+5. Set FTP secrets in GitHub repo settings (step 11)
+6. Back up existing `public_html/` content via cPanel before first deploy
+7. Push to main → verify pipeline end-to-end (step 12)
+
+**Blockers to resolve before deploying:**
+
+- Confirm `server-dir` path in cPanel (could be `./public_html/` or `./public_html/bigbio.ai/` for addon domains)
+- Have FTP credentials ready (FTP_SERVER, FTP_USERNAME, FTP_PASSWORD)
 
 ---
 
