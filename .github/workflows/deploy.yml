@@ -58,35 +58,34 @@ jobs:
           npm run build
           echo "Build complete: $(find out -type f | wc -l) files"
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /home/bigbio5/public_html/
-          local-dir: ./out/
-          protocol: ftp
-          port: 21
-          dangerous-clean-slate: true # Delete ALL existing files before upload
-          log-level: verbose # Add verbose logging
+      - name: Install SSH key
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/deploy_key
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Deploy via rsync
+        env:
+          SSHPASS: ${{ secrets.SSH_PASSPHRASE }}
+        run: |
+          sudo apt-get install -y sshpass > /dev/null 2>&1
+          sshpass -P "passphrase" -e rsync \
+            -e "ssh -p ${{ secrets.SSH_PORT }} -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
+            -avz --delete \
+            --exclude='.well-known' \
+            --exclude='.htaccess' \
+            ./out/ \
+            ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/home/bigbio5/public_html/
 
       - name: Verify deployment
         run: |
-          echo "Waiting for deployment to propagate..."
-          sleep 10
-
-          # Check if site is accessible
+          sleep 5
           response=$(curl -s -o /dev/null -w "%{http_code}" https://bigbio.ai)
-
           echo "Site returned HTTP $response"
-
-          # Don't fail the build for now while we debug
           if [ "$response" = "200" ]; then
-            echo "✅ Deployment successful! Site is live at https://bigbio.ai"
+            echo "Deployment successful! Site is live at https://bigbio.ai"
           else
-            echo "⚠️ Site returned HTTP $response. Files uploaded but may need manual configuration."
-            echo "Check https://bigbio.ai to verify deployment"
+            echo "Site returned HTTP $response — check https://bigbio.ai"
           fi
 
       - name: Create deployment annotation
@@ -106,3 +105,7 @@ jobs:
               description: message,
               context: 'Production Deployment'
             })
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
