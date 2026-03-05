@@ -128,8 +128,9 @@ Header set X-Frame-Options "SAMEORIGIN"
 
 - `~/code/yourfamilytools-next/.github/workflows/deploy.yml` — FTP deploy to copy
 - `~/code/yourfamilytools-next/next.config.ts` — Static export reference
-- [Next.js MDX Guide](https://nextjs.org/docs/app/guides/mdx)
+- [Next.js MDX Guide]<https://nextjs.org/docs/app/guides/mdx>
 - <https://www.inmotionhosting.com/support/website/ftp/ftp-getting-started-guide/> - FTP Guide for Inmotion Hosting
+- <https://claude.com/claude-code> -Generated with Claude Code Refence Docs
 
 ---
 
