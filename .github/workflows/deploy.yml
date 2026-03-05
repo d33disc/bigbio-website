@@ -107,7 +107,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /home/bigbio5/public_html/
           local-dir: ./out/
-          protocol: ftps
+          protocol: ftp
           port: 21
           dangerous-clean-slate: false # Don't delete existing files first
 
