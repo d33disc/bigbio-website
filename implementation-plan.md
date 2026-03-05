@@ -131,6 +131,7 @@ Header set X-Frame-Options "SAMEORIGIN"
 - [Next.js MDX Guide]<https://nextjs.org/docs/app/guides/mdx>
 - <https://www.inmotionhosting.com/support/website/ftp/ftp-getting-started-guide/> - FTP Guide for Inmotion Hosting
 - <https://claude.com/claude-code> -Generated with Claude Code Refence Docs
+- <https://www.inmotionhosting.com/support/website/ftp/easily-upload-content-to-your-hosting-via-ftp/> - Upload Content to Your Hosting Via FTP
 
 ---
 
@@ -139,6 +140,7 @@ Header set X-Frame-Options "SAMEORIGIN"
 - FTP Username: <claudecode@bigbio.ai>
 - FTP server: ftp.bigbio.ai
 - FTP & explicit FTPS port: 21
+- FTP Directory /home/bigbio5/
 
 ---
 
