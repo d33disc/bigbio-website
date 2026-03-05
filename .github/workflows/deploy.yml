@@ -105,7 +105,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ./public_html/
+          server-dir: /home/bigbio5/public_html/
           local-dir: ./out/
           dangerous-clean-slate: false # Don't delete existing files first
 
