@@ -31,6 +31,23 @@ npx serve out        # Preview production build locally
 
 Static export means no server-side features (no API routes, no SSR, no ISR). All pages compile to flat HTML/CSS/JS in `out/`.
 
+## Knowledge Library
+
+`data/` is the project's persistent knowledge base. Every session should read from it and update it.
+
+- `data/career_history.md` -- Verified past achievements, metrics, experience (append-only, canonical for all claims)
+- `data/business_config.md` -- Active business params: rates, services, CTAs, positioning (changes frequently)
+- `data/research_library.md` -- Reference URLs, findings, best practices
+- `data/copy_bank.md` -- Approved website copy, taglines, voice
+- `data/competitors.md` -- Competitor analysis, positioning
+
+**Rules:**
+
+- Any claim on the website must trace to `career_history.md`. If it's not there, don't claim it.
+- When a session discovers useful references, add them to `research_library.md`.
+- Before generating website copy, read `business_config.md` for current rates, services, and CTAs.
+- Never fabricate metrics or testimonials.
+
 ## Deploy
 
 Push to `main` triggers GitHub Actions deploy. FTP secrets (`FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`) are set in GitHub repo settings.
