@@ -68,7 +68,7 @@ jobs:
           local-dir: ./out/
           protocol: ftp
           port: 21
-          dangerous-clean-slate: false # Don't delete existing files first
+          dangerous-clean-slate: true # Delete ALL existing files before upload
           log-level: verbose # Add verbose logging
 
       - name: Verify deployment

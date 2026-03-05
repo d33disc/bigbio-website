@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(git checkout:*)",
+      "Bash(git pull:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nFix deployment: Enable clean slate and remove MDX frontmatter\n\n- Enable dangerous-clean-slate in FTP deployment to clear old files\n- Remove frontmatter from MDX file (was rendering as visible content)\n- This will delete all server files and upload fresh build\n\nBREAKING: This will clear ALL files in public_html before upload\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
