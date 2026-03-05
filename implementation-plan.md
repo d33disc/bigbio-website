@@ -129,6 +129,15 @@ Header set X-Frame-Options "SAMEORIGIN"
 - `~/code/yourfamilytools-next/.github/workflows/deploy.yml` — FTP deploy to copy
 - `~/code/yourfamilytools-next/next.config.ts` — Static export reference
 - [Next.js MDX Guide](https://nextjs.org/docs/app/guides/mdx)
+- <https://www.inmotionhosting.com/support/website/ftp/ftp-getting-started-guide/> - FTP Guide for Inmotion Hosting
+
+---
+
+### Reference Facts
+
+- FTP Username: <claudecode@bigbio.ai>
+- FTP server: ftp.bigbio.ai
+- FTP & explicit FTPS port: 21
 
 ---
 
