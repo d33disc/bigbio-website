@@ -99,6 +99,18 @@ jobs:
           </IfModule>
           EOF
 
+      - name: Debug FTP Settings
+        run: |
+          echo "FTP Server: ${{ secrets.FTP_SERVER }}"
+          echo "FTP Username: ${{ secrets.FTP_USERNAME }}"
+          echo "Server Directory: /home/bigbio5/public_html/"
+          echo "Testing FTP connection..."
+
+          # Test connection without deploying
+          timeout 10 curl -v ftp://${{ secrets.FTP_SERVER }} \
+            --user ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }} \
+            --list-only 2>&1 | head -20 || echo "FTP test completed"
+
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -110,6 +122,7 @@ jobs:
           protocol: ftp
           port: 21
           dangerous-clean-slate: false # Don't delete existing files first
+          log-level: verbose # Add verbose logging
 
       - name: Verify deployment
         run: |
