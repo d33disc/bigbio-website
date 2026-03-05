@@ -2,14 +2,14 @@
 
 ## Project
 
-bigbio.ai — professional biotech AI consulting website for BigBio. Next.js static site deployed via FTP to InMotion shared hosting (cPanel).
+bigbio.ai — professional biotech AI consulting website for BigBio. Next.js static site deployed via rsync/SSH to InMotion shared hosting (cPanel).
 
 ## Tech Stack
 
 - **Framework:** Next.js 15 with static export (`output: "export"`)
 - **Content:** @next/mdx + remark-gfm — pages authored in MDX
 - **Styling:** Tailwind v4 + @tailwindcss/typography (prose classes)
-- **Deploy:** GitHub Actions → FTP (SamKirkland/FTP-Deploy-Action@v4.3.6) → InMotion `public_html/`
+- **Deploy:** GitHub Actions → rsync over SSH → InMotion `public_html/`
 - **Routing:** Static HTML files; minimal `.htaccess` (DirectoryIndex + 404 only)
 
 ## Commands
@@ -22,12 +22,12 @@ npx serve out        # Preview production build locally
 
 ## Architecture
 
+- `app/` — Next.js App Router pages and layout
+- `components/` — React components (atoms, sections)
 - `content/` — MDX content files (home.mdx, future blog posts)
-- `src/app/` — Next.js App Router pages and layout
-- `src/components/` — React components
 - `mdx-components.tsx` — Root-level MDX → React component mapping
-- `public/.htaccess` — Minimal Apache config (DirectoryIndex + 404 only; ModSecurity blocks rewrites/headers)
-- `.github/workflows/deploy.yml` — CI/CD: build + FTP deploy on push to main
+- `public/.htaccess` — Minimal Apache config (DirectoryIndex + 404 only)
+- `.github/workflows/deploy.yml` — CI/CD: build + rsync deploy on push to main
 
 Static export means no server-side features (no API routes, no SSR, no ISR). All pages compile to flat HTML/CSS/JS in `out/`.
 
@@ -50,9 +50,19 @@ Static export means no server-side features (no API routes, no SSR, no ISR). All
 
 ## Deploy
 
-Push to `main` triggers GitHub Actions deploy. FTP secrets (`FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`) are set in GitHub repo settings.
+Push to `main` triggers GitHub Actions deploy via rsync over SSH.
 
-**Hosting note:** ModSecurity is currently disabled in cPanel (pending InMotion whitelist ticket). Once whitelisted, re-enable ModSecurity and restore `.htaccess` security headers.
+SSH secrets in GitHub repo settings: `SSH_PRIVATE_KEY`, `SSH_PASSPHRASE`,
+`SSH_HOST`, `SSH_USERNAME`, `SSH_PORT`.
+
+Legacy FTP secrets (`FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`) remain
+but are no longer used by the deploy workflow.
+
+**SSH access:** `ssh inmotion-bigbio` (configured in `~/.ssh/config`).
+Key and passphrase in 1Password item `BigBio SSH - InMotion (bigbio5)`.
+
+**Hosting note:** ModSecurity is currently disabled in cPanel. WordPress
+was removed from the server on 2026-03-05 (was blocking static site).
 
 ## Code Generation Guidelines for AI Tools
 
