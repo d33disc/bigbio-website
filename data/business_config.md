@@ -72,7 +72,8 @@ None active.
 - No consulting revenue yet from website or LinkedIn
 - Iterating on positioning and rates until something converts
 - Expert network calls are the current revenue channel
-- Website Phase 1a complete (pipeline working), Phase 1b next (visual design)
+- Website Phase 1b complete and LIVE (hero, services, results, about, CTA)
+- Deploy switched from FTP to rsync/SSH (PR #15)
 
 ---
 

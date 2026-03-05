@@ -49,9 +49,12 @@ Entry format:
 - **URL:** N/A (discovered through deployment)
 - **Date:** 2026-03-05
 - **Key findings:** `output: "export"` produces flat HTML/CSS/JS in `out/`.
-  FTP deploy via SamKirkland/FTP-Deploy-Action@v4.3.6 works reliably.
-  `server-dir`: `/home/bigbio5/public_html/`. Pure-FTPd on port 21.
-- **Relevance:** Pipeline is working end-to-end. No server-side features available.
+  Deploy via rsync over SSH to `/home/bigbio5/public_html/`.
+  FTP (SamKirkland/FTP-Deploy-Action) was used initially but proved
+  unreliable (`dangerous-clean-slate` caused directory conflicts).
+  Switched to rsync/SSH in PR #15 (2026-03-05).
+- **Relevance:** Pipeline is working end-to-end. No server-side features
+  available.
 
 ### InMotion SSH Access
 
@@ -60,8 +63,9 @@ Entry format:
 - **Key findings:** SSH available on shared hosting via port 2222.
   Host: `secure360.inmotionhosting.com`. User: `bigbio5`.
   Key: `claude_code` (RSA 2048), passphrase-protected, generated in cPanel.
-  Private key in 1Password (`InMotion Hosting SSH private key for Claude code`)
-  and `~/.ssh/inmotion_claude_code` locally.
+  All connection details in 1Password item
+  `BigBio SSH - InMotion (bigbio5)` (SERVER category).
+  Private key also at `~/.ssh/inmotion_claude_code` locally.
   SSH config alias: `inmotion-bigbio` in `~/.ssh/config`.
   GitHub secrets: `SSH_PRIVATE_KEY`, `SSH_PASSPHRASE`, `SSH_HOST`,
   `SSH_USERNAME`, `SSH_PORT` — ready for CI/CD rsync deploy.

@@ -1,6 +1,6 @@
 # BigBio.ai -- Professional Biotech AI Consulting
 
-Next.js 15 static site deployed to InMotion shared hosting via GitHub Actions FTP.
+Next.js 15 static site deployed to InMotion shared hosting via GitHub Actions rsync/SSH.
 
 ## Quick Start
 
@@ -16,29 +16,45 @@ npx serve out        # Preview production build
 - **Framework:** Next.js 15 with static export (`output: "export"`)
 - **Content:** @next/mdx + remark-gfm -- markdown-authored pages
 - **Styling:** Tailwind v4 + @tailwindcss/typography
-- **Deploy:** GitHub Actions -> FTP to InMotion cPanel
+- **Deploy:** GitHub Actions -> rsync over SSH to InMotion cPanel
 
 ## Deployment
 
 ### How It Works
 
-Push to `main` triggers `.github/workflows/deploy.yml`, which builds the static site and uploads `out/` to InMotion via FTP (SamKirkland/FTP-Deploy-Action@v4.3.6).
+Push to `main` triggers `.github/workflows/deploy.yml`:
 
-- **FTP server:** Pure-FTPd on port 21
+1. Build static site (`npm run build` -> `out/`)
+2. rsync `out/` to InMotion via SSH (port 2222)
+3. Verify site returns HTTP 200
+
+### Configuration
+
+- **SSH host:** `secure360.inmotionhosting.com:2222`
 - **Server directory:** `/home/bigbio5/public_html/`
-- **Secrets:** `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD` in GitHub repo settings
+- **GitHub secrets:** `SSH_PRIVATE_KEY`, `SSH_PASSPHRASE`, `SSH_HOST`, `SSH_USERNAME`, `SSH_PORT`
+- **rsync excludes:** `.well-known`, `.htaccess` (preserved on server)
 
-### InMotion Hosting Gotchas
+### Local SSH Access
 
-- **ModSecurity 406:** InMotion's ModSecurity blocks `RewriteEngine`, `Header set`, and `mod_deflate` directives in `.htaccess`. Any of these triggers a 406 error on every request.
-- **`.htaccess` must be minimal:** Only `DirectoryIndex` and `ErrorDocument` are safe. No rewrites, no security headers, no compression.
-- **ModSecurity status:** Currently disabled in cPanel to unblock deploys. Pending InMotion support ticket to whitelist the domain. Once whitelisted, re-enable and restore headers.
-- **server-dir path:** Must be `/home/bigbio5/public_html/` (absolute path, trailing slash).
-- **cPanel access:** `https://<server-hostname>:2083` (credentials in 1Password, never in code).
+```bash
+# Requires ~/.ssh/config entry and sshpass
+ssh inmotion-bigbio
+```
+
+Key and passphrase stored in 1Password (`BigBio SSH - InMotion (bigbio5)`).
+
+### InMotion Hosting Notes
+
+- **ModSecurity:** Currently disabled in cPanel.
+- **`.htaccess`:** Must be minimal -- only `DirectoryIndex` and `ErrorDocument`.
+  `RewriteEngine`, `Header set`, and `mod_deflate` all trigger 406 errors.
+- **WordPress:** Removed 2026-03-05. Was blocking static site with SpeedyCache.
+- **cPanel:** `https://<server-hostname>:2083` (credentials in 1Password).
 
 ### Reference
 
-- [Next.js Static Export Guide](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)
+- [Next.js Static Export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)
 - [MDX in Next.js](https://nextjs.org/docs/app/guides/mdx)
-- [Tailwind v4 Docs](https://tailwindcss.com)
-- [InMotion FTP Setup Guide](https://www.inmotionhosting.com/support/website/ftp/)
+- [Tailwind v4](https://tailwindcss.com)
+- [InMotion SSH](https://www.inmotionhosting.com/support/server/ssh/shared-reseller-ssh/)
