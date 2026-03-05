@@ -9,17 +9,17 @@
 1. **AI Strategy Assessment** -- Evaluate org's AI readiness for regulated environments
 2. **GxP AI Validation** -- Validation frameworks for AI/ML in pharma/biotech
 3. **Fractional CTO** -- Technical leadership for AI-native biotech startups
-4. **Expert Network Calls** -- Deep-domain calls via GLG, Guidepoint, AlphaSights, etc.
+4. **Expert Network Calls** -- Deep-domain calls via Third Bridge, AlphaSights, GLG
 
 ---
 
 ## Pricing & Rates
 
-| Type                | Rate         | Effective Date | Notes                    |
-| ------------------- | ------------ | -------------- | ------------------------ |
-| Expert Network      | $600-1000/hr | 2026-02-09     | GLG, Guidepoint, etc.    |
-| Consulting          | $300-600/hr  | 2026-02-09     | Direct engagements       |
-| Assessment Projects | $150-250K    | 2026-02-09     | Full AI readiness review |
+| Type                | Rate         | Effective Date | Notes                          |
+| ------------------- | ------------ | -------------- | ------------------------------ |
+| Expert Network      | $600-1000/hr | 2026-02-09     | Third Bridge, AlphaSights, GLG |
+| Consulting          | $300-600/hr  | 2026-02-09     | Direct engagements             |
+| Assessment Projects | $150-250K    | 2026-02-09     | Full AI readiness review       |
 
 ---
 
@@ -59,8 +59,11 @@ None active.
 ## Booking Link / Contact Method
 
 - **Email:** <chris@bigbio.ai>
+- **Personal email:** <christopher.dvs@gmail.com>
+- **Phone:** 339-203-5442
+- **LinkedIn:** linkedin.com/in/christopher-davis-biotech
+- **GitHub:** github.com/d33disc
 - **Booking:** [TBD -- Calendly or similar]
-- **LinkedIn:** [TBD]
 
 ---
 
