@@ -57,7 +57,8 @@
   - All metrics verified in `career_history.md`
 
 - **Pre-Mango paragraph:** "Before Mango, Chris screened 6M compounds at
-  Novartis NIBR, managed a $1.2B GI franchise pipeline at Shire, and
+  Novartis NIBR, coordinated corporate strategy for the $1.2B GI
+  franchise pipeline at Shire, and
   co-founded a computational biology institute under MacArthur Fellow Stuart
   Kauffman at the University of Calgary -- delivering a 24/7 autonomous
   discovery platform 10 months early and 35% under budget."
@@ -117,4 +118,4 @@
 
 ---
 
-_Last updated: 2026-03-05_
+_Last updated: 2026-03-06_

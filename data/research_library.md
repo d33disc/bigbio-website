@@ -35,6 +35,17 @@ Entry format:
 
 ## Web Development & Hosting
 
+### Lucide React Icon System + Prompt Playbook Workflow
+
+- **URL:** <https://lucide.dev/guide/packages/lucide-react>
+- **Date:** 2026-03-06
+- **Key findings:** `lucide-react` provides tree-shakeable SVG icon
+  components that fit Next.js static export well. Homepage now uses
+  Lucide in Hero, Services, Results, About, and CTA. Prompt consistency
+  improved by codifying reusable templates and dial controls in
+  `data/design_prompt_playbook.md`.
+- **Relevance:** Future sessions should avoid uploading icon assets for standard UI needs and should use the prompt playbook to drive intentional, repeatable visual iterations.
+
 ### InMotion ModSecurity .htaccess Constraints
 
 - **URL:** N/A (discovered through deployment debugging)
