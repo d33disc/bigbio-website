@@ -1,8 +1,13 @@
 export function Footer() {
   return (
-    <footer className="bg-navy-950 border-t border-gray-800 px-6 py-8 text-gray-400">
+    <footer className="bg-navy-950 border-t border-white/10 px-6 py-8 text-gray-400">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 sm:flex-row">
-        <p className="text-sm">&copy; {new Date().getFullYear()} BigBio AI. All rights reserved.</p>
+        <div>
+          <p className="font-bold text-white">BigBio.ai</p>
+          <p className="text-sm">
+            &copy; {new Date().getFullYear()} BigBio AI. All rights reserved.
+          </p>
+        </div>
         <div className="flex gap-6 text-sm">
           <a
             href="https://linkedin.com/in/christopher-davis-biotech"
