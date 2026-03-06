@@ -19,6 +19,7 @@
   --white: #ffffff;
   --emerald-400: #34d399;
   --emerald-500: #10b981;
+  --emerald-600: #059669;
 }
 
 @theme inline {
@@ -28,6 +29,9 @@
   --color-navy-900: var(--navy-900);
   --color-navy-800: var(--navy-800);
   --color-navy-700: var(--navy-700);
+  --color-emerald-400: var(--emerald-400);
+  --color-emerald-500: var(--emerald-500);
+  --color-emerald-600: var(--emerald-600);
   --font-sans: var(--font-inter);
 }
 

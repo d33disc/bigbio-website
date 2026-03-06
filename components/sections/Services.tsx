@@ -1,3 +1,5 @@
+import { cn } from '@/lib/utils'
+
 const services = [
   {
     title: 'AI Strategy Assessment',
@@ -23,7 +25,7 @@ const services = [
 
 export function Services() {
   return (
-    <section className="bg-white px-6 py-20 md:py-24">
+    <section className="bg-white px-6 py-20 md:py-28">
       <div className="mx-auto max-w-5xl">
         <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
           What we do
@@ -33,11 +35,18 @@ export function Services() {
           just advised on them.
         </p>
         <div className="grid gap-8 md:grid-cols-2">
-          {services.map((service) => (
+          {services.map((service, index) => (
             <div
               key={service.title}
-              className="rounded-lg border border-gray-200 p-8 transition-colors hover:border-gray-300"
+              className={cn(
+                'rounded-lg border border-gray-200 p-8 transition-all duration-200',
+                'hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-md',
+                index < 2 && 'border-l-4 border-l-emerald-500'
+              )}
             >
+              <p className="mb-4 text-sm font-semibold tracking-widest text-gray-300">
+                {String(index + 1).padStart(2, '0')}
+              </p>
               <h3 className="mb-3 text-xl font-semibold text-gray-900">{service.title}</h3>
               <p className="leading-relaxed text-gray-600">{service.description}</p>
             </div>
