@@ -55,9 +55,6 @@ Push to `main` triggers GitHub Actions deploy via rsync over SSH.
 SSH secrets in GitHub repo settings: `SSH_PRIVATE_KEY`, `SSH_PASSPHRASE`,
 `SSH_HOST`, `SSH_USERNAME`, `SSH_PORT`.
 
-Legacy FTP secrets (`FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`) remain
-but are no longer used by the deploy workflow.
-
 **SSH access:** `ssh inmotion-bigbio` (configured in `~/.ssh/config`).
 Key and passphrase in 1Password item `BigBio SSH - InMotion (bigbio5)`.
 
