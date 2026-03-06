@@ -1,3 +1,5 @@
+import { ArrowRight } from 'lucide-react'
+
 export function Hero() {
   return (
     <section className="bg-navy-950 border-t-4 border-emerald-500 px-6 py-28 text-white md:py-40">
@@ -18,9 +20,10 @@ export function Hero() {
           </p>
           <a
             href="mailto:chris@bigbio.ai"
-            className="inline-block rounded-md bg-emerald-500 px-8 py-3 text-lg font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400"
+            className="inline-flex items-center gap-2 rounded-md bg-emerald-500 px-8 py-3 text-lg font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400"
           >
             Let&apos;s talk
+            <ArrowRight aria-hidden="true" className="h-5 w-5" />
           </a>
         </div>
         <div className="hidden text-center lg:block">
