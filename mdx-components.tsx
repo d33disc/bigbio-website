@@ -2,6 +2,7 @@ import type { MDXComponents } from 'mdx/types'
 import Image from 'next/image'
 import { Link } from '@/components/atoms/Link'
 import { Button } from '@/components/atoms/Button'
+import { cn } from '@/lib/utils'
 
 type MdxImageProps = {
   src?: string
@@ -147,7 +148,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           width={resolvedWidth}
           height={resolvedHeight}
           sizes="(max-width: 768px) 100vw, 768px"
-          className={className ?? 'h-auto max-w-full rounded-lg shadow-lg'}
+          className={cn('h-auto max-w-full rounded-lg shadow-lg', className)}
         />
       )
     },
