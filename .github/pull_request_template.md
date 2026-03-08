@@ -27,7 +27,7 @@
 
 - [ ] Code comments added/updated where necessary
 - [ ] README updated if needed
-- [ ] Documentation in /docs updated if applicable
+- [ ] `CLAUDE.md` or relevant `data/*.md` docs updated if applicable
 
 ## Screenshots (if applicable)
 

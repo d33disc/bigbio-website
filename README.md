@@ -1,6 +1,6 @@
 # BigBio.ai -- Professional Biotech AI Consulting
 
-Next.js 15 static site deployed to InMotion shared hosting via GitHub Actions rsync/SSH.
+Next.js 16 static site deployed to InMotion shared hosting via GitHub Actions rsync/SSH.
 
 ## Quick Start
 
@@ -13,10 +13,28 @@ npx serve out        # Preview production build
 
 ## Architecture
 
-- **Framework:** Next.js 15 with static export (`output: "export"`)
+- **Framework:** Next.js 16 with static export (`output: "export"`)
 - **Content:** @next/mdx + remark-gfm -- markdown-authored pages
 - **Styling:** Tailwind v4 + @tailwindcss/typography
+- **Iconography:** `lucide-react` (inline SVG React components)
 - **Deploy:** GitHub Actions -> rsync over SSH to InMotion cPanel
+
+## Design Workflow (Vibe-Coded)
+
+- Reusable prompt/style guide lives at `data/design_prompt_playbook.md`.
+- Prompt from that file before visual changes to keep outputs consistent.
+- All icon usage should use `lucide-react` components (no uploaded icon image files).
+- Decorative icons must include `aria-hidden="true"`.
+
+## Knowledge Base
+
+Read these files before copy/design changes:
+
+- `data/career_history.md` -- canonical source for claims and metrics
+- `data/business_config.md` -- current services, rates, CTA status
+- `data/copy_bank.md` -- approved messaging and tone
+- `data/design_prompt_playbook.md` -- prompt templates and design dial controls
+- `data/research_library.md` -- deployment and technical findings
 
 ## Deployment
 

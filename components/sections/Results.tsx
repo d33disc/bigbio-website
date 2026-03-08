@@ -1,34 +1,42 @@
+import { BadgeDollarSign, Clock3, Filter, FlaskConical, Rocket, FileSearch } from 'lucide-react'
+
 import { cn } from '@/lib/utils'
 
 const metrics = [
   {
     value: '$4.24M+',
     label: 'Capital raised',
+    icon: BadgeDollarSign,
     detail: 'VC + NIIMBL grant, 84% founder equity retained',
   },
   {
     value: '90 min',
     label: 'Sterility testing',
+    icon: Clock3,
     detail: 'vs. 14-day reference method — 200x faster',
   },
   {
     value: '60,000',
     label: 'False positives filtered',
+    icon: Filter,
     detail: 'From 1.2M compound screen at Novartis',
   },
   {
     value: '6M',
     label: 'Compounds screened',
+    icon: FlaskConical,
     detail: 'Across 5 HTS programs at NIBR',
   },
   {
     value: '10 mo early',
     label: 'Autonomous platform delivered',
+    icon: Rocket,
     detail: '35% under budget — Calgary drug discovery',
   },
   {
     value: '7,000+',
     label: 'Assets reviewed per week',
+    icon: FileSearch,
     detail: '100% first-pass approval at Shire',
   },
 ] as const
@@ -55,6 +63,7 @@ export function Results() {
                 'hover:border-emerald-400/30'
               )}
             >
+              <metric.icon aria-hidden="true" className="mb-3 h-5 w-5 text-emerald-400" />
               <p
                 className={cn(
                   'mb-1 font-bold text-emerald-400',

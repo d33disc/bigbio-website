@@ -1,3 +1,5 @@
+import { Mail } from 'lucide-react'
+
 export function CallToAction() {
   return (
     <section className="to-navy-950 bg-gradient-to-br from-emerald-600 px-6 py-16 text-white md:py-20">
@@ -11,8 +13,9 @@ export function CallToAction() {
         </p>
         <a
           href="mailto:chris@bigbio.ai"
-          className="text-navy-950 inline-block rounded-md bg-white px-8 py-3 text-lg font-semibold shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-gray-100"
+          className="text-navy-950 inline-flex items-center gap-2 rounded-md bg-white px-8 py-3 text-lg font-semibold shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-gray-100"
         >
+          <Mail aria-hidden="true" className="h-5 w-5" />
           chris@bigbio.ai
         </a>
       </div>

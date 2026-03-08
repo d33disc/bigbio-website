@@ -1,6 +1,31 @@
 import type { MDXComponents } from 'mdx/types'
+import Image from 'next/image'
 import { Link } from '@/components/atoms/Link'
 import { Button } from '@/components/atoms/Button'
+import { cn } from '@/lib/utils'
+
+type MdxImageProps = {
+  src?: string
+  alt?: string
+  width?: string | number
+  height?: string | number
+  className?: string
+}
+
+function parseImageDimension(value: string | number | undefined, fallback: number): number {
+  if (typeof value === 'number' && Number.isFinite(value) && value > 0) {
+    return value
+  }
+
+  if (typeof value === 'string') {
+    const parsed = Number(value)
+    if (Number.isFinite(parsed) && parsed > 0) {
+      return parsed
+    }
+  }
+
+  return fallback
+}
 
 /**
  * Custom components to use in MDX files
@@ -108,9 +133,25 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     hr: ({ ...props }) => <hr className="my-8 border-gray-200" {...props} />,
 
     // Image
-    img: ({ alt = '', ...props }) => (
-      <img className="h-auto max-w-full rounded-lg shadow-lg" alt={alt} {...props} />
-    ),
+    img: ({ src, alt = '', width, height, className }: MdxImageProps) => {
+      if (!src) {
+        return null
+      }
+
+      const resolvedWidth = parseImageDimension(width, 1200)
+      const resolvedHeight = parseImageDimension(height, 675)
+
+      return (
+        <Image
+          src={src}
+          alt={alt}
+          width={resolvedWidth}
+          height={resolvedHeight}
+          sizes="(max-width: 768px) 100vw, 768px"
+          className={cn('h-auto max-w-full rounded-lg shadow-lg', className)}
+        />
+      )
+    },
 
     // Custom components available in MDX
     Button,

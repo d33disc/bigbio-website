@@ -6,9 +6,10 @@ bigbio.ai — professional biotech AI consulting website for BigBio. Next.js sta
 
 ## Tech Stack
 
-- **Framework:** Next.js 15 with static export (`output: "export"`)
+- **Framework:** Next.js 16 with static export (`output: "export"`)
 - **Content:** @next/mdx + remark-gfm — pages authored in MDX
 - **Styling:** Tailwind v4 + @tailwindcss/typography (prose classes)
+- **Iconography:** lucide-react (inline SVG React components)
 - **Deploy:** GitHub Actions → rsync over SSH → InMotion `public_html/`
 - **Routing:** Static HTML files; minimal `.htaccess` (DirectoryIndex + 404 only)
 
@@ -40,13 +41,22 @@ Static export means no server-side features (no API routes, no SSR, no ISR). All
 - `data/research_library.md` -- Reference URLs, findings, best practices
 - `data/copy_bank.md` -- Approved website copy, taglines, voice
 - `data/competitors.md` -- Competitor analysis, positioning
+- `data/design_prompt_playbook.md` -- Prompt templates and design dial controls for vibe-coded iterations
 
 **Rules:**
 
 - Any claim on the website must trace to `career_history.md`. If it's not there, don't claim it.
 - When a session discovers useful references, add them to `research_library.md`.
 - Before generating website copy, read `business_config.md` for current rates, services, and CTAs.
+- Before visual redesign work, read `design_prompt_playbook.md` and set dial controls explicitly.
 - Never fabricate metrics or testimonials.
+
+## Current UI Decisions (2026-03-06)
+
+- Homepage uses lucide-react iconography in Hero, Services, Results, About, and CTA sections.
+- Prefer icon components over uploaded icon assets to keep styling and accessibility consistent.
+- Decorative icons should use `aria-hidden="true"`; icon size scale should stay within 16/20/24 unless there is a strong UI reason.
+- Maintain navy + emerald visual language and direct operator-tone copy.
 
 ## Deploy
 
@@ -54,9 +64,6 @@ Push to `main` triggers GitHub Actions deploy via rsync over SSH.
 
 SSH secrets in GitHub repo settings: `SSH_PRIVATE_KEY`, `SSH_PASSPHRASE`,
 `SSH_HOST`, `SSH_USERNAME`, `SSH_PORT`.
-
-Legacy FTP secrets (`FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`) remain
-but are no longer used by the deploy workflow.
 
 **SSH access:** `ssh inmotion-bigbio` (configured in `~/.ssh/config`).
 Key and passphrase in 1Password item `BigBio SSH - InMotion (bigbio5)`.

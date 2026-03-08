@@ -74,6 +74,8 @@ None active.
 - Expert network calls are the current revenue channel
 - Website Phase 1b complete and LIVE (hero, services, results, about, CTA)
 - Deploy switched from FTP to rsync/SSH (PR #15)
+- Lucide icon system is active across homepage sections
+- Prompt-driven design workflow documented in `data/design_prompt_playbook.md`
 
 ---
 
